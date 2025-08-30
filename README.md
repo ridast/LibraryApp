@@ -59,7 +59,7 @@ LibraryApp/
     ---
  ## Run the application with Docker
 
- git clone <your-repo-url>
+git clone repository
 cd LibraryApp
 
 docker-compose up --build
@@ -68,6 +68,16 @@ docker-compose up --build
 After all containers are running properly:
 - **You can access the React frontend at:** [http://localhost:3000](http://localhost:3000)
 - **The API will be available at:** [http://localhost:8080/books](http://localhost:8080/books)
+
+---
+
+## 📖 API Documentation (Swagger)
+
+Interactive API documentation is available via Swagger UI once the containers are running.
+
+- **Swagger UI:** [http://localhost:8080/swagger](http://localhost:8080/swagger)
+
+Use this interface to explore, test, and understand the available API endpoints.
 
 ---
 
@@ -82,4 +92,3 @@ After all containers are running properly:
 ## Troubleshooting
 
 - If the API cannot connect to the database, ensure the `db` container is healthy and the connection string matches.
-- For database connection issues, check logs with:
