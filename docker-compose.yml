@@ -1,0 +1,39 @@
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "Your_password123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test: ["CMD", "sqlcmd", "-U", "sa", "-P", "Your_password123", "-Q", "select 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:  # renamed for clarity
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"   # different port for API
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Server=db,1433;Database=LibraryDb;User=sa;Password=Your_password123;Encrypt=True;TrustServerCertificate=True;
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:  # Add this for React
+    build:
+      context: ./LibraryApp/libraryapp-frontend  # path to your React app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"   # React dev server
+    environment:
+      - REACT_APP_API_URL=http://localhost:3000
+    depends_on:
+      - api
