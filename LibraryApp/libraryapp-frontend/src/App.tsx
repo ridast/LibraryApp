@@ -2,7 +2,6 @@
 import { BookDto } from "./types";
 import { getBooks, addBook } from "./api/books";
 import axios from "axios";
-jest.mock("axios");
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<BookDto[]>([]);

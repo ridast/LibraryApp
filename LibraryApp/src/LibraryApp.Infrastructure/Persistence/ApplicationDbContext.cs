@@ -25,7 +25,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         base.OnModelCreating(modelBuilder);
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var domainEntities = ChangeTracker
       .Entries<BaseEntity>() // ✅ generic
