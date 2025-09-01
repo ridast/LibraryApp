@@ -1,4 +1,6 @@
-﻿# 📚 LibraryApp
+﻿# 📚 LibraryApp    **Built by Rida STITOU**
+
+
 LibraryApp is a modern, containerized full-stack application designed to manage a library's book inventory and lending operations. It leverages a robust **.NET 9 Web API with Razor Pages** for the backend, a responsive **React** frontend for user interaction, and a reliable **SQL Server** database for persistent storage. The entire solution is orchestrated with **Docker Compose** for seamless local development and deployment.
 
 ---
@@ -59,7 +61,7 @@ LibraryApp/
     ---
  ## Run the application with Docker
 
-git clone repository
+git clone https://github.com/ridast/LibraryApp
 cd LibraryApp
 
 docker-compose up --build
