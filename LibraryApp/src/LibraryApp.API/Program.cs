@@ -5,6 +5,7 @@ using LibraryApp.Application.Books.Queries;
 using LibraryApp.Application.Common.Interfaces;
 using LibraryApp.Infrastructure.Persistence;
 using LibraryApp.src.LibraryApp.Application.Books.Commands;
+using LibraryApp.src.LibraryApp.Application.Books.Events;
 using LibraryApp.src.LibraryApp.Application.Common.Behaviors;
 using LibraryApp.src.LibraryApp.Infrastructure.Persistence.LibraryApp.Infrastructure.Persistence;
 using MediatR;
@@ -31,6 +32,10 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateBookCommandValidator>
 
 // Register Validation Behavior in MediatR pipeline
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<BookBorrowedEventHandler>());
+
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

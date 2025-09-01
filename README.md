@@ -92,3 +92,4 @@ Use this interface to explore, test, and understand the available API endpoints.
 ## Troubleshooting
 
 - If the API cannot connect to the database, ensure the `db` container is healthy and the connection string matches.
+  
