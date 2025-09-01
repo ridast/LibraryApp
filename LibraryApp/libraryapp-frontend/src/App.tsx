@@ -1,6 +1,8 @@
 ﻿import React, { useEffect, useState } from "react";
 import { BookDto } from "./types";
 import { getBooks, addBook } from "./api/books";
+import axios from "axios";
+jest.mock("axios");
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<BookDto[]>([]);
@@ -34,7 +36,7 @@ const App: React.FC = () => {
 
     const handleDeleteBook = async (id: string) => {
         try {
-            await fetch(`http://localhost:8080/api/books/${id}`, { method: "DELETE" });
+            await axios.delete(`http://localhost:8080/api/books/${id}`);
             setMessage("Book deleted successfully!");
             fetchBooks();
         } catch {
